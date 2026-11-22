@@ -2,49 +2,414 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const title = 'Evgenii Tsvetkov — Director of Photography';
+const description =
+  'Berlin-based cinematographer with 20+ years in features, high-end series and short films. Credits include Gold Diggers, My Mother\u2019s Penguins, Elsa\u2019s Land and Core of the World.';
+
+const imdb = 'https://www.imdb.com/name/nm3898639/';
+const email = 'hello@cinetsvet.com'; // TODO: replace with your real address
+
+const featured = [
+  {
+    year: '2021–2025',
+    title: 'My Mother\u2019s Penguins',
+    format: 'Series',
+    director: 'Natalya Meshchaninova',
+    producer: 'Look Film',
+  },
+  {
+    year: '2022–',
+    title: 'Gold Diggers (Seasons 2 & 3)',
+    format: 'Series · Prime Video',
+    director: 'Multiple directors',
+    producer: 'Start',
+  },
+  {
+    year: '2022',
+    title: 'Alice Can\u2019t Wait',
+    format: 'Series',
+    director: '',
+    producer: '',
+  },
+  {
+    year: '2020',
+    title: 'Elsa\u2019s Land',
+    format: 'Feature film',
+    director: 'Yuliya Kolesnik',
+    producer: 'Sputnik Vostok Production',
+    note: 'Nominated, Best Cinematography — Västerås Film Festival 2021',
+  },
+  {
+    year: '2018',
+    title: 'Core of the World',
+    format: 'Feature film',
+    director: 'Natalya Meshchaninova',
+    producer: 'CTB Film Company',
+  },
+  {
+    year: '2017',
+    title: 'The Red Bracelets',
+    format: 'Series',
+    director: '',
+    producer: '',
+  },
+];
+
+const earlier = [
+  { year: '2023', title: 'The Bug', format: 'Short' },
+  { year: '2014', title: 'Obituary', format: 'Short · dir. Marina Potapova' },
+  { year: '2012', title: 'Pelmeni', format: 'Feature · dir. Gennady Ostrovski' },
+  { year: '2008–2011', title: 'Chapiteau Show', format: 'Feature · dir. Sergei Loban' },
+];
+
+const strengths = [
+  {
+    heading: 'Story-first lighting',
+    text: 'Every frame is built around the director\u2019s intent — image language is agreed before the first setup, not invented on set.',
+  },
+  {
+    heading: 'Built for the schedule',
+    text: 'Two decades across series and features means fast, reliable crews and a look that holds across hundreds of shooting days.',
+  },
+  {
+    heading: 'Series & streaming ready',
+    text: 'Experience on platform productions, including Prime Video, with the deliverables and consistency that commissioners expect.',
+  },
+  {
+    heading: 'Based in Berlin',
+    text: 'Available for productions in Germany and across Europe.',
+  },
+];
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      main {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+        background: #0b0b0c;
+        color: #e9e6e1;
+      }
+      section {
+        padding: 5rem 1.5rem;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .hero {
+        min-height: 78vh;
+        display: flex;
+        align-items: center;
+        background:
+          radial-gradient(ellipse at 75% 20%, rgba(214, 160, 90, 0.16), transparent 55%),
+          linear-gradient(180deg, #0b0b0c 0%, #141416 100%);
+        border-bottom: 1px solid #222;
+      }
+      .eyebrow {
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        color: #d6a05a;
+        margin: 0 0 1.2rem;
+      }
+      h1 {
+        font-size: clamp(2.6rem, 8vw, 5.5rem);
+        line-height: 1;
+        margin: 0 0 1.4rem;
+        color: #fff;
+        font-weight: 600;
+      }
+      .lede {
+        max-width: 38rem;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #b9b5ae;
+        margin: 0 0 2.2rem;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.85rem 1.5rem;
+        border: 1px solid #d6a05a;
+        color: #d6a05a;
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+      }
+      .btn.primary,
+      .btn:hover {
+        background: #d6a05a;
+        color: #0b0b0c;
+      }
+      .btn.primary:hover {
+        background: transparent;
+        color: #d6a05a;
+      }
+      h2 {
+        font-size: 0.85rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: #d6a05a;
+        margin: 0 0 2.4rem;
+        font-weight: 500;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1px;
+        background: #26262a;
+        border: 1px solid #26262a;
+      }
+      .card {
+        background: #101012;
+        padding: 1.8rem;
+      }
+      .card .meta {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8a867f;
+        margin: 0 0 0.8rem;
+      }
+      .card h3 {
+        margin: 0 0 0.9rem;
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: 500;
+      }
+      .card p {
+        margin: 0.15rem 0;
+        font-size: 0.95rem;
+        color: #b9b5ae;
+      }
+      .card .award {
+        margin-top: 1rem;
+        padding-top: 0.9rem;
+        border-top: 1px solid #26262a;
+        color: #d6a05a;
+        font-size: 0.9rem;
+      }
+      .earlier {
+        list-style: none;
+        padding: 0;
+        margin: 3rem 0 0;
+        border-top: 1px solid #26262a;
+      }
+      .earlier li {
+        display: grid;
+        grid-template-columns: 9rem 1fr auto;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #26262a;
+        color: #b9b5ae;
+      }
+      .earlier li strong {
+        color: #fff;
+        font-weight: 500;
+      }
+      .alt {
+        background: #101012;
+        border-top: 1px solid #222;
+        border-bottom: 1px solid #222;
+      }
+      .about {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+      }
+      .about p {
+        font-size: 1.1rem;
+        line-height: 1.75;
+        color: #c9c5be;
+        margin: 0 0 1.2rem;
+      }
+      .facts {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .facts li {
+        padding: 0.9rem 0;
+        border-bottom: 1px solid #26262a;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        color: #b9b5ae;
+      }
+      .facts li span:last-child {
+        color: #fff;
+        text-align: right;
+      }
+      .strengths {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 2.2rem;
+      }
+      .strengths h3 {
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.15rem;
+        margin: 0 0 0.6rem;
+      }
+      .strengths p {
+        margin: 0;
+        color: #a9a59e;
+        line-height: 1.6;
+      }
+      .contact {
+        text-align: center;
+      }
+      .contact h2 {
+        margin-bottom: 1.4rem;
+      }
+      .contact .big {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid #d6a05a;
+      }
+      .contact p {
+        color: #8a867f;
+        margin: 2rem 0 0;
+      }
+      .contact p a {
+        color: #d6a05a;
+      }
+      @media (max-width: 760px) {
+        .about {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .earlier li {
+          grid-template-columns: 1fr;
+          gap: 0.2rem;
+        }
+        section {
+          padding: 3.5rem 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <p class="eyebrow">Director of Photography · Berlin</p>
+          <h1>Evgenii<br />Tsvetkov</h1>
+          <p class="lede">
+            Cinematographer with more than twenty years of experience in features, high-end series and
+            short films. I build images that serve the story and keep a production on schedule.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#work">Selected work</a>
+            <a class="btn" href={imdb} rel="noopener" target="_blank">IMDb</a>
+            <a class="btn" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="wrap">
+          <h2>Selected work</h2>
+          <div class="grid">
+            {
+              featured.map((f) => (
+                <article class="card">
+                  <p class="meta">
+                    {f.year} · {f.format}
+                  </p>
+                  <h3>{f.title}</h3>
+                  {f.director && <p>Director: {f.director}</p>}
+                  {f.producer && <p>Production: {f.producer}</p>}
+                  {f.note && <p class="award">{f.note}</p>}
+                </article>
+              ))
+            }
+          </div>
+
+          <ul class="earlier">
+            {
+              earlier.map((e) => (
+                <li>
+                  <span>{e.year}</span>
+                  <strong>{e.title}</strong>
+                  <span>{e.format}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p style="margin-top:1.6rem">
+            <a class="btn" href={imdb} rel="noopener" target="_blank">Full filmography on IMDb</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="alt" id="about">
+        <div class="wrap about">
+          <div>
+            <h2>About</h2>
+            <p>
+              I am a Berlin-based director of photography working across feature films, television
+              series, documentaries and advertising. My work includes the series
+              <em>Alice Can’t Wait</em>, <em>My Mother’s Penguins</em> and <em>Gold Diggers</em>
+              (seasons 2 and 3), and the features <em>Elsa’s Land</em> and <em>Core of the World</em>.
+            </p>
+            <p>
+              I like to start early with the director: references, tone, a shared visual language.
+              From there, my job is to make that language work on set — efficiently, calmly and with
+              total respect for the schedule and the budget.
+            </p>
+          </div>
+          <ul class="facts">
+            <li><span>Role</span><span>Director of Photography</span></li>
+            <li><span>Based in</span><span>Berlin, Germany</span></li>
+            <li><span>Experience</span><span>20+ years</span></li>
+            <li><span>Formats</span><span>Features · Series · Shorts · Commercials</span></li>
+            <li><span>Languages</span><span>English · Russian</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>What you get</h2>
+          <div class="strengths">
+            {
+              strengths.map((s) => (
+                <div>
+                  <h3>{s.heading}</h3>
+                  <p>{s.text}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="alt contact" id="contact">
+        <div class="wrap">
+          <h2>Let’s talk about your project</h2>
+          <a class="big" href={`mailto:${email}`}>{email}</a>
+          <p>
+            Credits and recognition on <a href={imdb} rel="noopener" target="_blank">IMDb</a>
+          </p>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>
