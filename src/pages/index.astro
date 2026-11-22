@@ -104,29 +104,65 @@ const strengths = [
         margin: 0 auto;
       }
       .hero {
-        padding: 7rem 0 0;
+        position: relative;
+        overflow: hidden;
         background: #0b0b0c;
         border-bottom: 1px solid #222;
-      }
-      .hero-text {
-        padding: 0 1.5rem;
-        position: relative;
-        z-index: 1;
+        padding: 0;
       }
       .hero-img {
         display: block;
         width: 100%;
         height: auto;
-        margin-top: -2.5rem;
-        -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
-        mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
+        transform: scaleX(-1); /* mirrored: horse on the left, windmill on the right */
       }
-      @media (max-width: 760px) {
+      .hero-shade {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(11, 11, 12, 0.85) 0%, rgba(11, 11, 12, 0.5) 45%, rgba(11, 11, 12, 0.12) 78%, #0b0b0c 100%),
+          linear-gradient(90deg, rgba(11, 11, 12, 0.6) 0%, rgba(11, 11, 12, 0) 65%);
+      }
+      .hero-text {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-start;
+        padding: 4.5rem 1.5rem 0;
+      }
+      .hero-text .wrap {
+        width: 100%;
+      }
+      .hero h1 {
+        font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+        margin-bottom: 1rem;
+      }
+      .hero .lede {
+        margin-bottom: 1.6rem;
+      }
+      @media (max-width: 900px) {
         .hero {
-          padding-top: 4rem;
+          display: flex;
+          flex-direction: column;
+          padding-top: 3.5rem;
+        }
+        .hero-shade {
+          display: none;
+        }
+        .hero-text {
+          position: relative;
+          inset: auto;
+          order: -1;
+          padding: 0 1.25rem;
+          z-index: 1;
+        }
+        .hero h1 {
+          font-size: clamp(2.6rem, 11vw, 4rem);
         }
         .hero-img {
           margin-top: -1rem;
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 30%);
         }
       }
       .eyebrow {
@@ -324,21 +360,6 @@ const strengths = [
     <Header />
     <main>
       <section class="hero">
-        <div class="hero-text">
-        <div class="wrap">
-          <p class="eyebrow">Director of Photography · Berlin</p>
-          <h1>Evgenii<br />Tsvetkov</h1>
-          <p class="lede">
-            Cinematographer with more than twenty years of experience in features, high-end series and
-            short films. I build images that serve the story and keep a production on schedule.
-          </p>
-          <div class="actions">
-            <a class="btn primary" href="#work">Selected work</a>
-            <a class="btn" href={imdb} rel="noopener" target="_blank">IMDb</a>
-            <a class="btn" href="#contact">Get in touch</a>
-          </div>
-        </div>
-        </div>
         <img
           class="hero-img"
           src="/hero.jpg"
@@ -347,6 +368,22 @@ const strengths = [
           alt="Film still: wooden windmill, farm buildings and a lone horse in morning fog"
           fetchpriority="high"
         />
+        <div class="hero-shade"></div>
+        <div class="hero-text">
+          <div class="wrap">
+            <p class="eyebrow">Director of Photography · Berlin</p>
+            <h1>Evgenii<br />Tsvetkov</h1>
+            <p class="lede">
+              Cinematographer with more than twenty years of experience in features, high-end series and
+              short films. I build images that serve the story and keep a production on schedule.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#work">Selected work</a>
+              <a class="btn" href={imdb} rel="noopener" target="_blank">IMDb</a>
+              <a class="btn" href="#contact">Get in touch</a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="work">
