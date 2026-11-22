@@ -11,12 +11,25 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+// Put a 1200x630 still from your work at public/og-image.jpg
+const { title, description, image = '/og-image.jpg' } = Astro.props;
+
+const personSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Evgenii Tsvetkov',
+	jobTitle: 'Director of Photography',
+	description,
+	url: Astro.site?.toString(),
+	address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
+	sameAs: ['https://www.imdb.com/name/nm3898639/'],
+};
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#0b0b0c" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
@@ -34,6 +47,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="Evgenii Tsvetkov — Director of Photography" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -45,3 +59,6 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
